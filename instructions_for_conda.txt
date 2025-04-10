@@ -1,0 +1,5 @@
+To create the environment without using the environment.yml, follow this steps:
+1) run "conda create -n open_dect python=3.12"
+2) activate the environment and run "pip install resdata"
+3) run "conda install pyqt=5 matplotlib"
+4) run conda install conda-forge::pydicom

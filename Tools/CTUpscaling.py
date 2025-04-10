@@ -21,7 +21,6 @@ import numpy as np
 import math
 
 def GetMult(rows):
-    
     found=False
     while found==False:
         istart=int(round(math.sqrt(rows)))
@@ -33,20 +32,18 @@ def GetMult(rows):
 
 
 def UpscaleGrid(x,y,n):
-
-	x=GetUniqueInt(x)
-	y=GetUniqueInt(y)
-	x,y=np.meshgrid(x,y,indexing='ij')
-	return x,y
+    x=GetUniqueInt(x)
+    y=GetUniqueInt(y)
+    x,y=np.meshgrid(x,y,indexing='ij')
+    return x,y
 
 def GetUniqueInt(x):
-        x=x/n
-        x.astype(int)
-        x=np.unique(x)
-	return x
+    x=x/n
+    x.astype(int)
+    x=np.unique(x)
+    return x
 
 def UpscalePoro(z,x,y,nblocks,n):
-    
     new = np.ones((nblocks,nblocks))
        
     x=x/n
@@ -58,14 +55,13 @@ def UpscalePoro(z,x,y,nblocks,n):
         for xii,yii,zii in zip(xi,yi,zi):
             new[xii][yii]+=zii
     for i in enumerate(new):
-		for j in enumerate(new[i[0]]):
-			new[i[0]][j[0]]=j[1]/float(n**2)
+        for j in enumerate(new[i[0]]):
+            new[i[0]][j[0]]=j[1]/float(n**2)
 
     return new
 
 def GetMaskedValues(x,Offsetr,Offsetc):
-
-	# A circle shape is generated based on the diameter and the x/y offsets
+    # A circle shape is generated based on the diameter and the x/y offsets
     n=x.shape[0]
     
     a=n/2+Offsetc
@@ -73,15 +69,14 @@ def GetMaskedValues(x,Offsetr,Offsetc):
     r=n/2
 
     ny,nx = np.ogrid[-a:n-a, -b:n-b]
-    	# The mask will apply to the values inside the circle
+    # The mask will apply to the values inside the circle
     mask = (nx*nx + ny*ny > r*r)
     x[mask]=0
 	
     return x
     
 def GetMaskedValues2(x,Offsetr,Offsetc,Crop_pct,Diameter):
-
-	# A circle shape is generated based on the diameter and the x/y offsets
+    # A circle shape is generated based on the diameter and the x/y offsets
     n=x.shape[0]
     ncrop=int(n*float(Crop_pct)/Diameter/2)
     a=n/2+Offsetr
@@ -92,7 +87,7 @@ def GetMaskedValues2(x,Offsetr,Offsetc,Crop_pct,Diameter):
     return x
 
 def GetPoro(x1,x2,parameters):	 
-		 # Show the image in the middle og the core
+    # Show the image in the middle og the core
     
     rho_matrix=float(parameters[0])
     rho_fluid=float(parameters[1])
