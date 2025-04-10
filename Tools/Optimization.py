@@ -21,15 +21,9 @@ from resdata.summary import Summary
 from Tools.CoreSimulation import WriteDATAfile,RunEclipse_checkout,PlotEclipseResults
 import numpy as np
 import random
-import os
-import subprocess
 from subprocess import check_output
-# TODO: find workaround for resdata in Windows 11
-# import ecl
-# from resdata.summary import Summary
 
 from matplotlib import pyplot as plt
-from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 
 def Swarm(imax,n,pmin,pmax,treshold,window,app):
 	#Get parameters from inputs
