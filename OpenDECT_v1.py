@@ -1299,6 +1299,11 @@ class Ui_MainWindow(object):
             z=GetPoro(x1,x2,parameters)
             poro_coarse=UpscalePoro(z,x,y,nblocks,n)
 
+            # it may seem like there is a missing "reset" of poro_coarse_avg to
+            # the poro_coarse calculated every n_z steps of i. The update actually
+            # happens in GetMaskedValues(), there it is reset to zero
+            # This entire if block is just a odd way of doing the coarsening in
+            # Z direction, just like what was done in UpscalePoro() for X, Y
             if (firstime):
                 poro_coarse_avg=poro_coarse
                 a = poro_coarse.shape[0]/2
@@ -1318,6 +1323,7 @@ class Ui_MainWindow(object):
             i+=1
             self.progressBar.setProperty("value", 0)
 
+            # TODO: This is very prone to hiding errors in porosity calculation
             PORO[PORO<0]=0
             PORO[PORO>1]=1
 
@@ -1327,8 +1333,12 @@ class Ui_MainWindow(object):
             #
             #Poro-perm correlation with percolation threshold
             #
+            # TODO: This is very prone to hiding errors in porosity calculation
             PORO[PORO<0.05]=0.05
+            # TODO: perm is not calculated from the porosity set above, so there
+            #  is a conceptual mismatch between porosity and perm in later calculations
             PERMX=5*(PORO-0.05)**3.12*PORO*1E5
+            # TODO: This is very prone to hiding errors in permeability calculation
             PERMX[PERMX<10]=10
 
             self.Writetoconsole("Average Porosity:"+str(np.mean(PORO[PORO!=0])))

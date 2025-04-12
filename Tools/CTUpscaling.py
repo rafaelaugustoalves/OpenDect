@@ -43,7 +43,9 @@ def GetUniqueInt(x):
     x=np.unique(x)
     return x
 
-# This just creates a coarse grid, by combining blocks n^2, forming a final grid od nblocks^2
+# This just creates a coarse grid, by combining blocks n^2, forming a
+# final grid of nblocks^2.
+# Note that this coarse is for a single "slice" of the 3D volume
 def UpscalePoro(z,x,y,nblocks,n):
     new = np.ones((nblocks,nblocks))
        

@@ -60,4 +60,20 @@ parameters=[2650,1,-0.77,1.98,1007,36597.06,-35330.83,233946.02]
 z=GetPoro(x1,x2,parameters)
 
 poro_coarse=UpscalePoro(z,x,y,nblocks,n)
-coisa = 0
+
+Padding_bottom = 0
+Padding_top = 0
+length = 20 # number os slices
+nslices=length-Padding_bottom-Padding_top
+nblocks_z,n_z=GetMult(nslices)
+nblocks_z = int(nblocks_z)
+PORO=numpy.zeros(shape=(nblocks_z,nblocks,nblocks))
+ACTNUM=numpy.zeros(shape=(nblocks_z,nblocks,nblocks))
+poro_coarse_avg=poro_coarse
+for i in range(length):
+    # PORO[int((i-Padding_top)/n_z)]=poro_coarse_avg
+    # ACTNUM[(i-Padding_top)/n_z]=GetMaskedValues(poro_coarse_avg,0,0)
+    poro_coarse_avg = poro_coarse_avg * (i - Padding_top) / ((i - Padding_top) + 1) + poro_coarse / (
+            (i - Padding_top) + 1)
+    coisa = 0
+
