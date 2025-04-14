@@ -75,6 +75,9 @@ def Swarm(imax,n,pmin,pmax,treshold,window,app):
 				if p_out[i]<pb_out[i]:
 					for k in range(0,ndim):
 						pbest[k,i]=p[k,i]
+				# TODO: is the indentation bellow correct? It seems like we
+				#  lose the "match" between pbest and pb_out. Maybe It should
+				#  indent one more time to the right?
 				pb_out[i]=p_out[i]
 
 		#Check if the new personal best is the global best

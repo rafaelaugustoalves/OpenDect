@@ -979,7 +979,7 @@ class Ui_MainWindow(object):
         self.Co=float(self.lineEdit_24.text())
         self.Cw=float(self.lineEdit_25.text())
         self.StaticParams=[self.Lo,self.Eo,self.To,self.Lw,self.Ew,self.Tw,self.Sorw,self.Krw,self.Ao,self.Aw,self.Co,self.Cw]
-        self.DynamicParams=self.StaticParams
+        self.DynamicParams=self.StaticParams  # TODO: this is not creating a copy, just passing a reference. Change either will change both
         self.ActiveParams=[self.checkBox.isChecked(),self.checkBox_2.isChecked(),self.checkBox_3.isChecked(),self.checkBox_4.isChecked(),self.checkBox_5.isChecked(),self.checkBox_6.isChecked(),self.checkBox_7.isChecked(),self.checkBox_8.isChecked(),self.checkBox_9.isChecked(),self.checkBox_10.isChecked(),self.checkBox_11.isChecked(),self.checkBox_12.isChecked()]
         self.Lowerbounds=[int(self.spinBox_5.value()),int(self.spinBox_6.value()),int(self.spinBox_7.value()),int(self.spinBox_8.value()),int(self.spinBox_9.value()),int(self.spinBox_10.value()),int(self.spinBox_11.value()),int(self.spinBox_12.value()),int(self.spinBox_13.value()),int(self.spinBox_14.value()),int(self.spinBox_16.value()),int(self.spinBox_15.value())]
         self.Upperbounds=[int(self.spinBox_33.value()),int(self.spinBox_36.value()),int(self.spinBox_43.value()),int(self.spinBox_41.value()),int(self.spinBox_40.value()),int(self.spinBox_39.value()),int(self.spinBox_42.value()),int(self.spinBox_35.value()),int(self.spinBox_38.value()),int(self.spinBox_44.value()),int(self.spinBox_34.value()),int(self.spinBox_37.value())]
